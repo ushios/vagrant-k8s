@@ -5,4 +5,10 @@ runnnig k8s on vm
 
 ```console
 $ vagrant up
+$ vagrant ssh
+
+...
+
+$ sudo su -
+$ kubeadm init
 ```
