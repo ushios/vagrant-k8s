@@ -1,0 +1,9 @@
+- name: Install build tools
+  sudo: yes
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - apt-transport-https
+    - build-essential
+    - linux-libc-dev
+    - bridge-utils
+    - golang

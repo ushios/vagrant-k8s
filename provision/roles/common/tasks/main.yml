@@ -1,2 +1,18 @@
-- name: echo
-  command: echo abcd
+- name: "FIX: Ubuntu 16.04 LTS doesn't come with certain modules, required by ansible"
+  raw: apt-get install python-minimal aptitude -y
+  become: true
+  become_user: root
+  become_method: sudo
+
+- name: Upgrade
+  sudo: yes
+  apt: update_cache=yes upgrade=full
+
+- name: Install utilities
+  sudo: yes
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - git
+    - curl
+    - ssh
+    - unzip

@@ -4,3 +4,7 @@ charset = utf-8
 [Vagrantfile]
 indent_style = space
 indent_size = 2
+
+[*.yml]
+indent_style = space
+indent_size = 2

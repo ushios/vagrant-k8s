@@ -1,0 +1,30 @@
+- name: Install dependencies
+  sudo: yes
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Add key
+  sudo: yes
+  raw: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+- name: Add repository
+  sudo: yes
+  raw: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+- name: Upgrade
+  sudo: yes
+  apt: update_cache=yes upgrade=full
+
+- name: Install docker ce
+  sudo: yes
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - docker-ce
+
+- name: Add user to docker group
+  sudo: yes
+  raw: sudo adduser {{ docker_user }} docker

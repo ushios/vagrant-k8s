@@ -1,4 +1,5 @@
-- hosts: all
+- hosts: master
   become: true
   roles:
     - common
+    - docker
