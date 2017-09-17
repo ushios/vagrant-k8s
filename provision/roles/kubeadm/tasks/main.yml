@@ -1,0 +1,23 @@
+- name: Install dependencies
+  sudo: yes
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - apt-transport-https
+
+- name: Add key
+  sudo: yes
+  raw: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+- name: Add repository
+  copy: src={{ role_path }}/files/kubernetes.list dest=/etc/apt/sources.list.d/kubernetes.list owner=root group=root mode=0644
+
+- name: Upgrade
+  sudo: yes
+  apt: update_cache=yes upgrade=full
+
+- name: Install kubeadm kubelet
+  sudo: yes
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - kubeadm
+    - kubelet
