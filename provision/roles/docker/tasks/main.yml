@@ -27,4 +27,4 @@
 
 - name: Add user to docker group
   sudo: yes
-  raw: sudo adduser {{ docker_user }} docker
+  command: adduser {{ docker_user }} docker

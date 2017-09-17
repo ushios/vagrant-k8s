@@ -1,0 +1,11 @@
+- name: download latest
+  sudo: yes
+  raw: curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+- name: chmod
+  sudo: yes
+  raw: chmod +x ./kubectl
+
+- name: move into path
+  sudo: yes
+  raw: mv ./kubectl /usr/local/bin/kubectl
