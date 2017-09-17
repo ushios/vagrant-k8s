@@ -11,8 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.vm.network :forwarded_port, id: "ssh", guest: 22, host: 2210
 
     node.vm.provision "ansible" do |ansible|
-      ansible.playbook = "provisioning/vagrant.yml"
-      ansible.inventory_path = "provisioning/hosts"
+      ansible.playbook = "provision/vagrant.yml"
+      ansible.inventory_path = "provision/hosts"
       ansible.limit = 'all'
     end
   end
