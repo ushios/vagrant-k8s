@@ -23,7 +23,7 @@
   sudo: yes
   apt: name={{ item }} state=present update_cache=yes
   with_items:
-    - docker-ce
+    - docker.io
 
 - name: Add user to docker group
   sudo: yes
