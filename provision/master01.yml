@@ -1,0 +1,7 @@
+- hosts: ["master01"]
+  become: true
+  roles:
+    - common
+    - docker
+    - kubectl
+    - kubeadm

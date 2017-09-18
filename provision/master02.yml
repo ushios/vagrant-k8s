@@ -1,4 +1,4 @@
-- hosts: master
+- hosts: ["master02"]
   become: true
   roles:
     - common
