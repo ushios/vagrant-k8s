@@ -1,5 +1,5 @@
 # vagrant-k8s
-runnnig k8s on vm
+runnnig k8s with flannel on vm
 
 # Running kubernetes
 
@@ -11,7 +11,7 @@ $ vagrant up
 Init kubeadm and get init token
 ```console
 $ vagrant ssh master01
-(master01) $ sudo kubeadm init --apiserver-advertise-address 192.168.100.10
+(master01) $ sudo kubeadm init --apiserver-advertise-address 192.168.100.10 --pod-network-cidr=10.244.0.0/16
 
 ...
 
@@ -26,9 +26,9 @@ Create configuration
 (master01) $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-Using calico
+Using flannel
 ```console
-(master01) $ kubectl apply -f http://docs.projectcalico.org/v2.3/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
+(master01) $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
 Add worker01 to kubernetes cluster
